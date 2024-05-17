@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">Timesheet</string>
+    <string-array name="Time_type">
+        <item>Accounts and Financial Activities</item>
+        <item>Business Travel</item>
+        <item>Consulting</item>
+        <item>Event</item>
+        <item>Full Day Leave</item>
+        <item>Half Day Leave</item>
+        <item>HR Operations</item>
+        <item>Hiring/Interview</item>
+        <item>Holiday</item>
+        <item>Lunch/Tea Break</item>
+        <item>On Bench</item>
+        <item>Org Level Initiatives</item>
+        <item>POC</item>
+        <item>Presales</item>
+        <item>Project Work</item>
+        <item>Self Learning</item>
+        <item>Team Meeting</item>
+        <item>Training (Trainee)</item>
+        <item>Training (Trainer)</item>
+        <item>Webinar</item>
+        <item>Workshop</item>
+    </string-array>
+
+    <string-array name="Project_code">
+        <item>INC0001233</item>
+        <item>INC0001234</item>
+        <item>INC0001235</item>
+    </string-array>
+
+    <string-array name="Activity_type">
+        <item>Design</item>
+        <item>Development</item>
+        <item>Testing</item>
+        <item>Documentation</item>
+        <item>Meeting</item>
+        <item>Client Call</item>
+        <item>Scrum Meeting</item>
+    </string-array>
+</resources>
