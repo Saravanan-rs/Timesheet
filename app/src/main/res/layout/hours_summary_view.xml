@@ -24,6 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="10dp"
+            android:text="--"
             android:textAlignment="viewEnd"
             android:textColor="@color/darkGreen"
             android:textStyle="bold" />
@@ -50,6 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="10dp"
+            android:text="--"
             android:textAlignment="viewEnd"
             android:textColor="@color/darkOrange"
             android:textStyle="bold" />

@@ -34,40 +34,44 @@ class MainActivity : AppCompatActivity() {
     private lateinit var date7Button: Button
 
     @RequiresApi(Build.VERSION_CODES.O)
+    //Get current week sunday date as reference to start date of week
     private var currentWeekStartDate: LocalDate = LocalDate.now().with(TemporalAdjusters.previousOrSame(DayOfWeek.SUNDAY))
-    private val timeSheetDB= mutableListOf<DataList>()
-    private val dataItems= mutableListOf<DataItem>()
-    private val adapter = DataAdapter(dataItems)
+    @RequiresApi(Build.VERSION_CODES.O)
+
+    private lateinit var dataItems : MutableList<DataItem>
+    private lateinit var adapter : DataAdapter
+    private var timeSheetDB= mutableListOf<DataList>()
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        initializeDateButtons()
+        setupPreviousNextButtonListeners()
+
         val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
+        dataItems= mutableListOf()
 
-        calculateTotalHours()
-
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(this)
-
+        //Add task button onclickListener
         findViewById<ImageButton>(R.id.addTasktoTimeSheetImgBtn).setOnClickListener {
+            adapter=DataAdapter(dataItems)
+            recyclerView.adapter = adapter
+            recyclerView.layoutManager = LinearLayoutManager(this)
             val intentToFormActivity=Intent(this,FormActivity::class.java).apply {
                 putExtra("CurrentDayDateMonth",findViewById<TextView>(R.id.dayDateMonthTitleTextView).text.toString())
             }
             startActivityForResult(intentToFormActivity, 1)
         }
-
-        initializeDateButtons()
-        // Set click listeners for previous and next buttons
-        setupPreviousNextButtonListeners()
     }
 
-    // Outside onCreate()
+    // Outside onCreate() to handle form submission data
+    @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("NotifyDataSetChanged")
     @Deprecated("Deprecated in Java")
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 1 && resultCode == RESULT_OK) {
             val timeType = data?.getStringExtra("TimeType")
@@ -77,55 +81,31 @@ class MainActivity : AppCompatActivity() {
 
             val newDataItem = DataItem(timeType ?: "", projectCode ?: "", activityType ?: "", hours ?: 0.0)
             dataItems.add(newDataItem)
-            calculateTotalHours()
+            calculateTotalHours(dataItems)
             adapter.notifyDataSetChanged()
         }
     }
 
-
-    private fun calculateTotalHours(){
-        val totalHours = calculateTotalHours(dataItems)
-        findViewById<TextView>(R.id.text_total_hours).text = totalHours.toString()
-        val leaveHours = 9 - totalHours
-        findViewById<TextView>(R.id.text_leave_hours).text = if (leaveHours > 0) leaveHours.toString() else "0"
-    }
-
     @RequiresApi(Build.VERSION_CODES.O)
-    private fun initializeDateButtons() {
-        // Initialize buttons
-        date1Button = findViewById(R.id.date1Button)
-        date2Button = findViewById(R.id.date2Button)
-        date3Button = findViewById(R.id.date3Button)
-        date4Button = findViewById(R.id.date4Button)
-        date5Button = findViewById(R.id.date5Button)
-        date6Button = findViewById(R.id.date6Button)
-        date7Button = findViewById(R.id.date7Button)
-        val buttons = listOf(date1Button, date2Button, date3Button, date4Button, date5Button, date6Button, date7Button)
-        val formatterDate = DateTimeFormatter.ofPattern("d")
-        buttons.forEachIndexed { index, button ->
-            button.text = currentWeekStartDate.plusDays(index.toLong()).format(formatterDate)
-            button.setOnClickListener { selectDate(button,currentWeekStartDate.plusDays(index.toLong())) }
+    private fun addToTimeSheetDB(date: LocalDate, dataItems: MutableList<DataItem>) {
+        val dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
+        val currentDate = date.format(dateFormatter)
+
+        // Check if the date is already present in the timeSheetDB
+        val existingDataList = timeSheetDB.find { it.date == currentDate }
+
+        if (existingDataList != null) {
+            // If the date is already present, append the dataItems list
+            existingDataList.activities.addAll(dataItems)
+        } else {
+            // If the date is not present, create a new instance and add it to the timeSheetDB
+            val newDataList = DataList(currentDate, dataItems.toMutableList()) // Create a new list to avoid modifying the original list
+            timeSheetDB.add(newDataList)
         }
-
-        // Highlight today's date button
-        highlightTodayButton()
-    }
-
-    @RequiresApi(Build.VERSION_CODES.O)
-    private fun highlightTodayButton() {
-        val buttons = listOf(date1Button, date2Button, date3Button, date4Button, date5Button, date6Button, date7Button)
-        val today = LocalDate.now()
-
-        val todayIndex = currentWeekStartDate.until(today, ChronoUnit.DAYS).toInt()
-        if (todayIndex >= 0 && todayIndex < buttons.size) {
-            val todayButton = buttons[todayIndex]
-            todayButton.backgroundTintList = ContextCompat.getColorStateList(this, R.color.blue)
-            todayButton.setTextColor(ContextCompat.getColor(this, R.color.white)) // Change text color to white
-        }
-        updateDayDateMonthText(today)
     }
 
 
+    //listener for buttons < and > to move btw weeks and update calendar according to that
     @RequiresApi(Build.VERSION_CODES.O)
     private fun setupPreviousNextButtonListeners() {
 
@@ -150,6 +130,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    //Updating week date range title
     @RequiresApi(Build.VERSION_CODES.O)
     private fun updateDateRangeText(textView: TextView, startDate: LocalDate) {
         val buttons = listOf(date1Button, date2Button, date3Button, date4Button, date5Button, date6Button, date7Button)
@@ -166,6 +147,46 @@ class MainActivity : AppCompatActivity() {
         textView.text = dateRangeText
     }
 
+
+    //initialise custom calendar buttons and onclick listeners
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun initializeDateButtons() {
+        // Initialize buttons
+        date1Button = findViewById(R.id.date1Button)
+        date2Button = findViewById(R.id.date2Button)
+        date3Button = findViewById(R.id.date3Button)
+        date4Button = findViewById(R.id.date4Button)
+        date5Button = findViewById(R.id.date5Button)
+        date6Button = findViewById(R.id.date6Button)
+        date7Button = findViewById(R.id.date7Button)
+        val buttons = listOf(date1Button, date2Button, date3Button, date4Button, date5Button, date6Button, date7Button)
+        val formatterDate = DateTimeFormatter.ofPattern("d")
+        buttons.forEachIndexed { index, button ->
+            button.text = currentWeekStartDate.plusDays(index.toLong()).format(formatterDate)
+            button.setOnClickListener { selectDate(button,currentWeekStartDate.plusDays(index.toLong())) }
+        }
+
+        // Highlight today's date button
+        highlightTodayButton()
+    }
+
+
+    //function to highlight today date button when starting the app
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun highlightTodayButton() {
+        val buttons = listOf(date1Button, date2Button, date3Button, date4Button, date5Button, date6Button, date7Button)
+        val today = LocalDate.now()
+
+        val todayIndex = currentWeekStartDate.until(today, ChronoUnit.DAYS).toInt()
+        if (todayIndex >= 0 && todayIndex < buttons.size) {
+            val todayButton = buttons[todayIndex]
+            todayButton.backgroundTintList = ContextCompat.getColorStateList(this, R.color.blue)
+            todayButton.setTextColor(ContextCompat.getColor(this, R.color.white)) // Change text color to white
+        }
+        updateDayDateMonthText(today)
+    }
+
+    //check for button clicked in custom calendar and highlight that buttons, remove highlight in other buttons
     @RequiresApi(Build.VERSION_CODES.O)
     private fun selectDate(selectedButton: Button,selectedDate: LocalDate) {
         val buttons = listOf(date1Button, date2Button, date3Button, date4Button, date5Button, date6Button, date7Button)
@@ -179,11 +200,35 @@ class MainActivity : AppCompatActivity() {
             }
         }
         updateDayDateMonthText(selectedDate)
+
     }
 
-    // Create a function to update the day, date, and month TextView
+    //calculate total hours and leave hours and update it to text view
+    private fun calculateTotalHours(dataItems: MutableList<DataItem>){
+        val totalHours = dataItems.sumOf { it.hours }
+        findViewById<TextView>(R.id.text_total_hours).text = totalHours.toString()
+        val leaveHours = 9 - totalHours
+        findViewById<TextView>(R.id.text_leave_hours).text = if (leaveHours > 0) leaveHours.toString() else "0"
+    }
+
+    //Update the contents of list in recyclerview, when ever change of date or week
+    @SuppressLint("NotifyDataSetChanged")
+    private fun updateRecyclerView(dataItems: MutableList<DataItem>)
+    {
+        val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
+        adapter=DataAdapter(dataItems)
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        adapter.notifyDataSetChanged()
+        calculateTotalHours(dataItems)
+    }
+
+    // Create a function to update the day, date, and month in the Title of RecyclerView List
+    @SuppressLint("NotifyDataSetChanged")
     @RequiresApi(Build.VERSION_CODES.O)
     fun updateDayDateMonthText(date: LocalDate) {
+        dataItems= mutableListOf()
+        updateRecyclerView(dataItems)
         val formatter = DateTimeFormatter.ofPattern("EEEE, d'${getDayOfMonthSuffix(date.dayOfMonth)}' MMMM", Locale.getDefault())
         val formattedDate = date.format(formatter)
         findViewById<TextView>(R.id.dayDateMonthTitleTextView).text = formattedDate
@@ -200,9 +245,5 @@ class MainActivity : AppCompatActivity() {
             3 -> "rd"
             else -> "th"
         }
-    }
-
-    private fun calculateTotalHours(dataItems: List<DataItem>):Double {
-        return dataItems.sumOf { it.hours }
     }
 }

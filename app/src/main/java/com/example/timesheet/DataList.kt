@@ -1,8 +1,6 @@
 package com.example.timesheet
 
-import java.util.Date
-
 data class DataList(
-    val date:Date,
-    val timeSheetDataList : MutableList<DataItem>
+    val date: String, // Assuming date is represented as a string for simplicity
+    val activities: MutableList<DataItem>
 )
