@@ -13,7 +13,7 @@
         android:theme="@style/Theme.Timesheet"
         tools:targetApi="31">
         <activity
-            android:name=".WeeklyOverviewActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".FormActivity"/>
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".WeeklyOverviewActivity"/>
     </application>
 
 </manifest>

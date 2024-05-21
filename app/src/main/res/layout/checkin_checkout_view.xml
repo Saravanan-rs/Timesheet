@@ -8,13 +8,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="10dp">
+        android:padding="5dp">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Check-In"
             android:layout_weight="1"
-            android:textSize="18dp"
+            android:textSize="15dp"
             />
         <TextView
             android:layout_width="match_parent"
@@ -22,7 +22,7 @@
             android:text="09:30"
             android:layout_weight="1"
             android:textAlignment="textEnd"
-            android:textSize="18dp"
+            android:textSize="15dp"
             />
     </LinearLayout>
 
@@ -35,13 +35,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="10dp">
+        android:padding="5dp">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Check-Out"
             android:layout_weight="1"
-            android:textSize="18dp"
+            android:textSize="15dp"
             />
         <TextView
             android:layout_width="match_parent"
@@ -49,7 +49,7 @@
             android:text="19:02"
             android:layout_weight="1"
             android:textAlignment="textEnd"
-            android:textSize="18dp"
+            android:textSize="15dp"
             />
     </LinearLayout>
 
@@ -62,23 +62,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="10dp">
+        android:padding="5dp">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Location"
             android:layout_weight="1"
-            android:textSize="18dp"
+            android:textSize="15dp"
             />
         <TextView
+            android:id="@+id/locationText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Bangalore"
             android:layout_weight="1"
             android:textAlignment="textEnd"
-            android:textSize="16dp"
+            android:textSize="15dp"
             />
         <ImageButton
+            android:id="@+id/locationMoreButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/baseline_navigate_next_24"

@@ -129,6 +129,7 @@
                             android:src="@drawable/baseline_add_24" />
 
                         <ImageButton
+                            android:id="@+id/more_timesheet_detail"
                             android:layout_width="35dp"
                             android:layout_height="35dp"
                             android:background="@android:color/transparent"
