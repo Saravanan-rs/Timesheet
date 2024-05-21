@@ -7,8 +7,9 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+       >
 
         <include layout="@layout/app_bar_view" />
 
@@ -43,15 +44,16 @@
             android:text="LOGIN"
             android:textColor="@color/material_dynamic_neutral70"
             android:padding="5dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="20dp"/>
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
+            tools:ignore="HardcodedText" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
-            android:layout_marginBottom="15dp"
+            android:layout_marginBottom="10dp"
             app:cardCornerRadius="10dp"
             app:cardElevation="5dp">
             <include layout="@layout/checkin_checkout_view"/>
@@ -63,18 +65,25 @@
             android:text="TIME ENTRY"
             android:textColor="@color/material_dynamic_neutral70"
             android:padding="5dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="20dp"/>
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
+            tools:ignore="HardcodedText" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:layout_marginBottom="10dp"
             app:cardCornerRadius="10dp"
             app:cardElevation="5dp">
-            <include layout="@layout/time_entry_items"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/time_entry_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/time_entry_items"
+                tools:itemCount="4"/>
         </androidx.cardview.widget.CardView>
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

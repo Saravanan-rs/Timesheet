@@ -4,14 +4,13 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ImageButton
-import android.widget.ListView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import java.time.DayOfWeek
 import java.time.LocalDate
@@ -56,17 +55,29 @@ class WeeklyOverviewActivity : AppCompatActivity(), LocationBottomSheetDialog.On
             bottomSheet.show(supportFragmentManager, "MyBottomSheetDialogFragment")
         }
 
-        val recyclerView: RecyclerView = findViewById(R.id.hours_card_recyclerview)
-        recyclerView.layoutManager = GridLayoutManager(this, 3) // Change the number of columns as needed
+        val hoursCardRecyclerView: RecyclerView = findViewById(R.id.hours_card_recyclerview)
+        hoursCardRecyclerView.layoutManager = GridLayoutManager(this, 3) // Change the number of columns as needed
+
+        val hoursCardItems = listOf(
+            CardItem("54", "Regular Hours", Color.parseColor("#E1BEE7"), Color.BLUE),
+            CardItem("20", "Total Hours", Color.parseColor("#C5E1A5"), Color.parseColor("#195E2A")),
+            CardItem("10", "Leave Hours", Color.parseColor("#FFCDD2"), Color.RED),
+        )
+        val hoursCardViewAdapter = HoursCardViewAdapter(this, hoursCardItems)
+        hoursCardRecyclerView.adapter = hoursCardViewAdapter
+
+        val timeEntryRecyclerView: RecyclerView = findViewById(R.id.time_entry_recyclerview)
+        timeEntryRecyclerView.layoutManager = LinearLayoutManager(this)
 
         val items = listOf(
-            CardItem("54", "Regular Hours", Color.parseColor("#E1BEE7"), Color.BLUE),
-            CardItem("40", "Overtime Hours", Color.parseColor("#C5E1A5"), Color.parseColor("#195E2A")),
-            CardItem("20", "Vacation Hours", Color.parseColor("#FFCDD2"), Color.RED),
+            TimeEntryListItem("Project Work", "INC0000123|Design", 5, R.drawable.baseline_navigate_next_24),
+            TimeEntryListItem("Project Planning", "INC0000124|Planning", 2, R.drawable.baseline_navigate_next_24),
+            TimeEntryListItem("Project Planning", "INC0000124|Planning", 2, R.drawable.baseline_navigate_next_24),
+            // Add more items as needed
         )
-        val hoursCardViewAdapter = HoursCardViewAdapter(this, items)
-        recyclerView.adapter = hoursCardViewAdapter
 
+        val adapter = TimeEntryListAdapter(this, items)
+        timeEntryRecyclerView.adapter = adapter
     }
     override fun onLocationSelected(location: String) {
         val locationText=findViewById<TextView>(R.id.locationText)
@@ -84,14 +95,13 @@ class WeeklyOverviewActivity : AppCompatActivity(), LocationBottomSheetDialog.On
         previousWeekButton.setOnClickListener {
             currentWeekStartDate = currentWeekStartDate.minusWeeks(1)
             Utils.updateDateRangeText(this, dateRangeTextView, currentWeekStartDate, getButtons())
-            selectedDate=Utils.selectDate(this, date1Button, getButtons(), currentWeekStartDate) { date ->
-             }
+            selectedDate=Utils.selectDate(this, date1Button, getButtons(), currentWeekStartDate) { }
         }
 
         nextWeekButton.setOnClickListener {
             currentWeekStartDate = currentWeekStartDate.plusWeeks(1)
             Utils.updateDateRangeText(this, dateRangeTextView, currentWeekStartDate, getButtons())
-            selectedDate=Utils.selectDate(this, date1Button, getButtons(), currentWeekStartDate) { date ->
+            selectedDate=Utils.selectDate(this, date1Button, getButtons(), currentWeekStartDate) {
             }
         }
     }
@@ -99,7 +109,7 @@ class WeeklyOverviewActivity : AppCompatActivity(), LocationBottomSheetDialog.On
     @RequiresApi(Build.VERSION_CODES.O)
     private fun initializeDateButtons() {
         val buttons = getButtons()
-        Utils.initializeDateButtons(this, currentWeekStartDate, buttons) { date ->
+        Utils.initializeDateButtons(this, currentWeekStartDate, buttons) {
             // Optional: implement any additional behavior needed for this activity when a date is selected
         }
         Utils.highlightTodayButton(this,buttons,selectedDate)
