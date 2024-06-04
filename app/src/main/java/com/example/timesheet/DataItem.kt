@@ -1,5 +1,5 @@
 package com.example.timesheet
-// DataItem.kt
+// TimeEntry Data Item Class
 data class DataItem(
     val timeType: String,
     val projectCode: String,

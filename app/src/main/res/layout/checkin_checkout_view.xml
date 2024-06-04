@@ -1,91 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:padding="5dp">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="5dp">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="Check-In"
-            android:layout_weight="1"
-            android:textSize="15dp"
-            />
+            android:textSize="15dp" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="09:30"
-            android:layout_weight="1"
             android:textAlignment="textEnd"
-            android:textSize="15dp"
-            />
+            android:textSize="15dp" />
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:background="@color/black"
-        android:layout_margin="5dp"/>
+        android:layout_margin="5dp"
+        android:background="@color/black" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="5dp">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="Check-Out"
-            android:layout_weight="1"
-            android:textSize="15dp"
-            />
+            android:textSize="15dp" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="19:02"
             android:layout_weight="1"
+            android:text="19:02"
             android:textAlignment="textEnd"
-            android:textSize="15dp"
-            />
+            android:textSize="15dp" />
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:background="@color/black"
-        android:layout_margin="5dp"/>
+        android:layout_margin="5dp"
+        android:background="@color/black" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="5dp">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Location"
             android:layout_weight="1"
-            android:textSize="15dp"
-            />
+            android:text="Location"
+            android:textSize="15dp" />
+
         <TextView
             android:id="@+id/locationText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Bangalore"
             android:layout_weight="1"
+            android:text="Bangalore"
             android:textAlignment="textEnd"
-            android:textSize="15dp"
-            />
+            android:textSize="15dp" />
+
         <ImageButton
             android:id="@+id/locationMoreButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/baseline_navigate_next_24"
             android:background="@android:color/transparent"
-            />
+            android:src="@drawable/baseline_navigate_next_24" />
     </LinearLayout>
 
 </LinearLayout>

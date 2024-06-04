@@ -1,15 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="10dp"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/dayDateMonthTitleTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
         android:background="@color/blue"
         android:padding="10dp"
         android:text="Day,Date,Month"
@@ -31,35 +28,39 @@
             android:padding="5dp">
 
             <TextView
+                android:id="@+id/tvTimeType"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:text="Time Type"
-                android:textSize="15dp"
+                android:textSize="15sp"
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tvProjectCode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:text="Project Code"
-                android:textSize="15dp"
+                android:textSize="15sp"
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tvActivityType"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:text="Activity Type"
-                android:textSize="15dp"
+                android:textSize="15sp"
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tvHours"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:text="Hours"
-                android:textSize="15dp"
+                android:textSize="15sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -81,6 +82,7 @@
                 android:id="@+id/projectCodeSpinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:clickable="false"
                 android:entries="@array/Project_code"
                 android:padding="10dp" />
 
@@ -88,6 +90,7 @@
                 android:id="@+id/activityTypeSpinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:clickable="false"
                 android:entries="@array/Activity_type"
                 android:padding="10dp" />
 
@@ -95,43 +98,43 @@
                 android:id="@+id/hours"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:hint="Hrs"
                 android:inputType="numberDecimal"
                 android:padding="10dp"
-                android:textSize="15dp"
+                android:textSize="15sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
     </LinearLayout>
 
-   <LinearLayout
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:orientation="horizontal"
-       android:gravity="center">
-       <Button
-           android:id="@+id/cancelTaskFormBtn"
-           android:layout_width="100dp"
-           android:layout_height="wrap_content"
-           android:layout_gravity="center"
-           android:layout_margin="10dp"
-           android:backgroundTint="#DD8B7D"
-           android:gravity="center"
-           android:padding="10dp"
-           android:text="Cancel" />
-       <Button
-           android:id="@+id/addTaskFormBtn"
-           android:layout_width="100dp"
-           android:layout_height="wrap_content"
-           android:layout_gravity="center"
-           android:layout_margin="10dp"
-           android:backgroundTint="@color/blue"
-           android:gravity="center"
-           android:padding="10dp"
-           android:text="Add" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
 
-   </LinearLayout>
+        <Button
+            android:id="@+id/cancelTaskFormBtn"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:backgroundTint="#DD8B7D"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="Cancel" />
 
+        <Button
+            android:id="@+id/addTaskFormBtn"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:backgroundTint="@color/blue"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="Add" />
 
+    </LinearLayout>
 </LinearLayout>

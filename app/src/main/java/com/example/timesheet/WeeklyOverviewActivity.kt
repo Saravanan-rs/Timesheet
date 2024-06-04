@@ -43,47 +43,55 @@ class WeeklyOverviewActivity : AppCompatActivity(), LocationBottomSheetDialog.On
         initializeDateButtons()
         setupPreviousNextButtonListeners()
         val intentToMainActivity = Intent(this,MainActivity::class.java)
+
+        //Going back to MainActivity
         findViewById<TextView>(R.id.backButton).setOnClickListener {
             startActivity(intentToMainActivity)
         }
 
+        //Going back to MainActivity
         findViewById<ImageButton>(R.id.backImageButton).setOnClickListener{
             startActivity(intentToMainActivity)
         }
+
+        //Location bottom sheet > button
         findViewById<ImageButton>(R.id.locationMoreButton).setOnClickListener {
             val bottomSheet = LocationBottomSheetDialog()
             bottomSheet.show(supportFragmentManager, "MyBottomSheetDialogFragment")
         }
 
+        //Hours Card Grid Recycler View
         val hoursCardRecyclerView: RecyclerView = findViewById(R.id.hours_card_recyclerview)
         hoursCardRecyclerView.layoutManager = GridLayoutManager(this, 3) // Change the number of columns as needed
-
         val hoursCardItems = listOf(
             CardItem("54", "Regular Hours", Color.parseColor("#E1BEE7"), Color.BLUE),
             CardItem("20", "Total Hours", Color.parseColor("#C5E1A5"), Color.parseColor("#195E2A")),
+            CardItem("10", "Leave Hours", Color.parseColor("#FFCDD2"), Color.RED),
             CardItem("10", "Leave Hours", Color.parseColor("#FFCDD2"), Color.RED),
         )
         val hoursCardViewAdapter = HoursCardViewAdapter(this, hoursCardItems)
         hoursCardRecyclerView.adapter = hoursCardViewAdapter
 
+        //Time Entry Recycler View
         val timeEntryRecyclerView: RecyclerView = findViewById(R.id.time_entry_recyclerview)
         timeEntryRecyclerView.layoutManager = LinearLayoutManager(this)
-
         val items = listOf(
             TimeEntryListItem("Project Work", "INC0000123|Design", 5, R.drawable.baseline_navigate_next_24),
             TimeEntryListItem("Project Planning", "INC0000124|Planning", 2, R.drawable.baseline_navigate_next_24),
             TimeEntryListItem("Project Planning", "INC0000124|Planning", 2, R.drawable.baseline_navigate_next_24),
             // Add more items as needed
         )
-
         val adapter = TimeEntryListAdapter(this, items)
         timeEntryRecyclerView.adapter = adapter
     }
+
+    //Fetch location from bottom sheet and set to textView
     override fun onLocationSelected(location: String) {
         val locationText=findViewById<TextView>(R.id.locationText)
         locationText.text = location
     }
 
+    //Week Range Selector
     @RequiresApi(Build.VERSION_CODES.O)
     private fun setupPreviousNextButtonListeners() {
         val dateRangeTextView: TextView = findViewById(R.id.date_range_text_view)
@@ -106,6 +114,7 @@ class WeeklyOverviewActivity : AppCompatActivity(), LocationBottomSheetDialog.On
         }
     }
 
+    //Initialize Calendar Date Buttons
     @RequiresApi(Build.VERSION_CODES.O)
     private fun initializeDateButtons() {
         val buttons = getButtons()
@@ -114,6 +123,7 @@ class WeeklyOverviewActivity : AppCompatActivity(), LocationBottomSheetDialog.On
         }
         Utils.highlightTodayButton(this,buttons,selectedDate)
     }
+
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun getButtons(): List<Button> {

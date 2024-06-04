@@ -11,6 +11,7 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.temporal.TemporalAdjusters
@@ -47,6 +48,14 @@ class MainActivity : AppCompatActivity() {
         val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
         dataItems = mutableListOf()
 
+        findViewById<ExtendedFloatingActionButton>(R.id.timeEntry_button).setOnClickListener {
+            val intentToTimeEntry = Intent(this, WeeklyOverviewActivity::class.java).apply {
+                putExtra("currentWeekStartDate", currentWeekStartDate)
+                putExtra("selectedDate",selectedDate)
+            }
+            startActivity(intentToTimeEntry)
+
+        }
         findViewById<ImageButton>(R.id.addTasktoTimeSheetImgBtn).setOnClickListener {
             adapter = DataAdapter(dataItems)
             recyclerView.adapter = adapter
@@ -55,13 +64,6 @@ class MainActivity : AppCompatActivity() {
                 putExtra("CurrentDayDateMonth", findViewById<TextView>(R.id.dayDateMonthTitleTextView).text.toString())
             }
             startActivityForResult(intentToFormActivity, 1)
-        }
-        findViewById<ImageButton>(R.id.more_timesheet_detail).setOnClickListener {
-            val intentToMore = Intent(this, WeeklyOverviewActivity::class.java).apply {
-                putExtra("currentWeekStartDate", currentWeekStartDate)
-                putExtra("selectedDate",selectedDate)
-            }
-            startActivity(intentToMore)
         }
     }
 

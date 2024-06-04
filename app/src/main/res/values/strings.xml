@@ -4,10 +4,11 @@
         <item>Accounts and Financial Activities</item>
         <item>Business Travel</item>
         <item>Consulting</item>
+        <item>Documentation</item>
         <item>Event</item>
         <item>Full Day Leave</item>
-        <item>Half Day Leave</item>
         <item>HR Operations</item>
+        <item>Half Day Leave</item>
         <item>Hiring/Interview</item>
         <item>Holiday</item>
         <item>Lunch/Tea Break</item>
@@ -31,12 +32,19 @@
     </string-array>
 
     <string-array name="Activity_type">
-        <item>Design</item>
+        <item>Bug Fixing</item>
+        <item>DB Design</item>
         <item>Development</item>
-        <item>Testing</item>
         <item>Documentation</item>
-        <item>Meeting</item>
-        <item>Client Call</item>
-        <item>Scrum Meeting</item>
+        <item>Project Management</item>
+        <item>Project work</item>
+        <item>System design</item>
+        <item>Team Meeting</item>
+        <item>Testing</item>
+        <item>Training</item>
+        <item>UAT</item>
+        <item>Unit Testing</item>
+        <item>UX Design</item>
+
     </string-array>
 </resources>

@@ -11,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
+        android:layout_weight="1"
         app:cardBackgroundColor="@color/material_dynamic_secondary90"
         app:cardCornerRadius="10dp">
 
