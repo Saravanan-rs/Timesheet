@@ -90,7 +90,3 @@ class FormActivity : AppCompatActivity() {
 
     }
 }
-
-private fun Spinner.onItemSelectedListener(value: () -> Unit) {
-
-}
