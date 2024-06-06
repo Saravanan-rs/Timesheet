@@ -36,7 +36,7 @@ class WeeklyOverviewActivity : AppCompatActivity(), LocationBottomSheetDialog.On
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.weekly_timesheet_layout)
+        setContentView(R.layout.activity_timesheet)
 
         currentWeekStartDate = intent.getSerializableExtra("currentWeekStartDate") as LocalDate? ?: LocalDate.now().with(TemporalAdjusters.previousOrSame(DayOfWeek.SUNDAY))
         selectedDate=intent.getSerializableExtra("selectedDate")as LocalDate
@@ -66,8 +66,7 @@ class WeeklyOverviewActivity : AppCompatActivity(), LocationBottomSheetDialog.On
         val hoursCardItems = listOf(
             CardItem("54", "Regular Hours", Color.parseColor("#E1BEE7"), Color.BLUE),
             CardItem("20", "Total Hours", Color.parseColor("#C5E1A5"), Color.parseColor("#195E2A")),
-            CardItem("10", "Leave Hours", Color.parseColor("#FFCDD2"), Color.RED),
-            CardItem("10", "Leave Hours", Color.parseColor("#FFCDD2"), Color.RED),
+            CardItem("10", "Leave Hours", Color.parseColor("#FFCDD2"), Color.RED)
         )
         val hoursCardViewAdapter = HoursCardViewAdapter(this, hoursCardItems)
         hoursCardRecyclerView.adapter = hoursCardViewAdapter

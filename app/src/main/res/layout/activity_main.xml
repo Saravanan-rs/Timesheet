@@ -3,74 +3,83 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="5dp">
-
 
         <include
             android:id="@+id/appBar_layout"
             layout="@layout/app_bar_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <include
             android:id="@+id/top_week_range"
             layout="@layout/top_week_range"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/appBar_layout" />
-
+            app:layout_constraintTop_toBottomOf="@id/appBar_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
             android:id="@+id/overview_text"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:padding="5dp"
             android:text="Overview"
             android:textSize="25sp"
             android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@+id/top_week_range" />
+            app:layout_constraintTop_toBottomOf="@id/top_week_range"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
             android:id="@+id/fillWeeklyTimeSheet_text"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:padding="5sp"
+            android:padding="5dp"
             android:text="Fill Weekly timesheet"
-            app:layout_constraintTop_toBottomOf="@+id/overview_text" />
+            app:layout_constraintTop_toBottomOf="@id/overview_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <View
             android:id="@+id/bottom_fillweeklyTimesheet_line"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="0.2dp"
             android:layout_marginTop="10dp"
             android:background="@android:color/black"
-            app:layout_constraintTop_toBottomOf="@+id/fillWeeklyTimeSheet_text" />
-
+            app:layout_constraintTop_toBottomOf="@id/fillWeeklyTimeSheet_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <include
             android:id="@+id/approverView_layout"
             layout="@layout/approver_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/bottom_fillweeklyTimesheet_line" />
-
+            app:layout_constraintTop_toBottomOf="@id/bottom_fillweeklyTimesheet_line"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:id="@+id/timeEntry_button"
             android:layout_width="wrap_content"
             android:layout_height="45dp"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
             android:backgroundTint="@color/blue"
             android:text="Time Entry"
             android:textColor="@color/white"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/approverView_layout"
-            tools:ignore="HardcodedText,MissingConstraints" />
+            app:layout_constraintTop_toBottomOf="@id/approverView_layout"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:id="@+id/comment_button"
@@ -80,105 +89,127 @@
             android:backgroundTint="@color/white"
             android:text="Comment"
             android:textColor="@color/black"
-            app:layout_constraintStart_toEndOf="@+id/timeEntry_button"
-            app:layout_constraintTop_toBottomOf="@+id/approverView_layout"
-            tools:ignore="HardcodedText,MissingConstraints" />
+            app:layout_constraintStart_toEndOf="@id/timeEntry_button"
+            app:layout_constraintTop_toBottomOf="@id/approverView_layout"
+            app:layout_constraintBottom_toBottomOf="@id/timeEntry_button" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/weekly_calendar_card_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
             android:layout_marginTop="15dp"
-            android:layout_marginRight="15dp"
+            android:layout_marginEnd="15dp"
             android:layout_marginBottom="10dp"
             android:padding="10dp"
             app:cardCornerRadius="8dp"
             app:cardElevation="10dp"
-            app:layout_constraintTop_toBottomOf="@+id/timeEntry_button">
+            app:layout_constraintTop_toBottomOf="@id/timeEntry_button">
 
-            <include layout="@layout/activity_calendar" />
+            <include layout="@layout/calendar_view" />
         </androidx.cardview.widget.CardView>
-
 
         <androidx.cardview.widget.CardView
             android:id="@+id/time_entry_list_card"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_margin="15dp"
             app:cardCornerRadius="8dp"
             app:cardElevation="10dp"
-            app:layout_constraintTop_toBottomOf="@+id/weekly_calendar_card_view">
+            app:layout_constraintTop_toBottomOf="@id/weekly_calendar_card_view">
 
-
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="wrap_content">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                <ImageButton
+                    android:id="@+id/list_check_icon"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/list_check_icon"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="10dp"
                     android:layout_marginTop="5dp"
-                    android:layout_marginRight="10dp"
-                    android:gravity="center"
-                    android:orientation="horizontal">
+                    android:contentDescription="TODO" />
 
-                    <ImageButton
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:background="@android:color/transparent"
-                        android:src="@drawable/list_check_icon" />
+                <TextView
+                    android:id="@+id/dayDateMonthTitleTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Day, Date, Month"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/list_check_icon"
+                    app:layout_constraintEnd_toStartOf="@id/addTasktoTimeSheetImgBtn"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginTop="5dp" />
 
-                    <TextView
-                        android:id="@+id/dayDateMonthTitleTextView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_weight="4"
-                        android:text="Day,Date,Month"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
+                <ImageButton
+                    android:id="@+id/addTasktoTimeSheetImgBtn"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/baseline_add_24"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/dayDateMonthTitleTextView"
+                    app:layout_constraintEnd_toStartOf="@id/more_timesheet_detail"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginTop="5dp" />
 
-                    <ImageButton
-                        android:id="@+id/addTasktoTimeSheetImgBtn"
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:background="@android:color/transparent"
-                        android:src="@drawable/baseline_add_24" />
-
-                    <ImageButton
-                        android:id="@+id/more_timesheet_detail"
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:background="@android:color/transparent"
-                        android:src="@drawable/baseline_more_horiz_24" />
-                </LinearLayout>
+                <ImageButton
+                    android:id="@+id/more_timesheet_detail"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/baseline_more_horiz_24"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginTop="5dp" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@id/list_check_icon"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/divider" />
 
                 <View
-                    android:layout_width="match_parent"
+                    android:id="@+id/divider"
+                    android:layout_width="0dp"
                     android:layout_height="0.7dp"
-                    android:background="@android:color/black" />
+                    android:background="@android:color/black"
+                    app:layout_constraintTop_toBottomOf="@id/recyclerView"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
-                <include layout="@layout/hours_summary_view" />
+                <include
+                    layout="@layout/hours_summary_view"
+                    app:layout_constraintTop_toBottomOf="@id/divider"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
-            </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
         </androidx.cardview.widget.CardView>
 
         <include
+            android:id="@+id/bottom_button_view"
+            layout="@layout/bottom_button_view"
             android:layout_margin="15dp"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            layout="@layout/bottom_button_view"
-            app:layout_constraintTop_toBottomOf="@+id/time_entry_list_card"
-            />
+            app:layout_constraintTop_toBottomOf="@id/time_entry_list_card"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
