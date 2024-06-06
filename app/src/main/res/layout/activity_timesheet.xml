@@ -30,181 +30,40 @@
             android:id="@+id/hours_card_recyclerview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            tools:itemCount="1"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/layoutWeekRange"
             tools:listitem="@layout/hours_card_item" />
 
-        <androidx.cardview.widget.CardView
+
+        <include
             android:id="@+id/weekly_calendar_card_view"
+            layout="@layout/calendar_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="15dp"
-            android:padding="5dp"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="5dp"
-            app:layout_constraintTop_toBottomOf="@+id/hours_card_recyclerview">
-
-            <include layout="@layout/calendar_view" />
-        </androidx.cardview.widget.CardView>
-
-        <TextView
-            android:id="@+id/loginCardTitleText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:padding="5dp"
-            android:text="LOGIN"
-            android:textColor="@color/material_dynamic_neutral70"
-            app:layout_constraintTop_toBottomOf="@+id/weekly_calendar_card_view"
-            tools:ignore="HardcodedText" />
+            android:layout_margin="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/hours_card_recyclerview" />
 
 
-        <androidx.cardview.widget.CardView
+        <include
             android:id="@+id/checkin_checkout_card"
+            layout="@layout/checkin_checkout_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginBottom="10dp"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="5dp"
-            app:layout_constraintTop_toBottomOf="@+id/loginCardTitleText">
-
-            <include layout="@layout/checkin_checkout_view" />
-        </androidx.cardview.widget.CardView>
-
-        <TextView
-            android:id="@+id/time_entry_title_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:padding="5dp"
-            android:text="TIME ENTRY"
-            android:textColor="@color/material_dynamic_neutral70"
-            app:layout_constraintTop_toBottomOf="@+id/checkin_checkout_card"
-            tools:ignore="HardcodedText" />
-
-        <androidx.cardview.widget.CardView
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            app:layout_constraintTop_toBottomOf="@+id/weekly_calendar_card_view" />
+        <include
             android:id="@+id/time_entry_card"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginBottom="20dp"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="5dp"
-            app:layout_constraintTop_toBottomOf="@+id/time_entry_title_text">
-
-
-<!--            <Toolbar-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content">-->
-
-<!--                <TextView-->
-<!--                    android:id="@+id/tvTimeEntry"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="Time Entry"-->
-<!--                    android:textSize="17sp"-->
-<!--                    android:textStyle="bold" />-->
-
-<!--                <ImageButton-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_gravity="center_vertical"-->
-<!--                    android:background="@android:color/transparent"-->
-<!--                    android:padding="10dp"-->
-<!--                    android:src="@drawable/list_check_icon" />-->
-
-<!--                <ImageButton-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_gravity="end"-->
-<!--                    android:layout_margin="10dp"-->
-<!--                    android:background="@android:color/transparent"-->
-<!--                    android:src="@drawable/baseline_more_horiz_24" />-->
-
-<!--                <ImageButton-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_gravity="end"-->
-<!--                    android:layout_margin="10dp"-->
-<!--                    android:background="@android:color/transparent"-->
-<!--                    android:src="@drawable/baseline_add_24" />-->
-<!--            </Toolbar>-->
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/time_entry_recyclerview"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                tools:itemCount="4"
-                tools:listitem="@layout/time_entry_items" />
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/addTimeEntryCard"
+            layout="@layout/time_entry_card_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginBottom="20dp"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="5dp"
-            app:layout_constraintTop_toBottomOf="@+id/time_entry_card">
+            android:layout_margin="10dp"
+            app:layout_constraintTop_toBottomOf="@+id/checkin_checkout_card" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:text="Add time entry"
-                android:textColor="@color/blue"
-                android:textSize="18sp" />
-        </androidx.cardview.widget.CardView>
-
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/copyTimeEntryCard"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginBottom="20dp"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="5dp"
-            app:layout_constraintTop_toBottomOf="@+id/addTimeEntryCard">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:text="Copy time entry"
-                android:textColor="@color/blue"
-                android:textSize="18sp" />
-
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="end|center_vertical"
-                android:background="@android:color/transparent"
-                android:padding="5dp"
-                android:src="@drawable/baseline_navigate_next_24" />
-        </androidx.cardview.widget.CardView>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="10dp"
-            app:layout_constraintTop_toBottomOf="@+id/copyTimeEntryCard" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.core.widget.NestedScrollView>

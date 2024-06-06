@@ -1,107 +1,100 @@
-<!-- item_data.xml -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <View
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0.5dp"
-        android:background="@android:color/black" />
+        android:background="@android:color/black"
+        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/text_time_type_label"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:padding="10dp"
+        android:text="Time Type"
+        app:layout_constraintEnd_toStartOf="@+id/text_time_type"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/text_time_type_label"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:padding="10dp"
-            android:text="Time Type" />
-
-        <TextView
-            android:id="@+id/text_time_type"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="10dp"
-            android:textAlignment="viewEnd"
-            android:textColor="@color/blue" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/text_time_type"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:padding="10dp"
+        android:textAlignment="viewEnd"
+        android:textColor="@color/blue"
+        app:layout_constraintStart_toEndOf="@+id/text_time_type_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/text_time_type_label" />
 
-        <TextView
-            android:id="@+id/text_project_code_label"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="10dp"
-            android:text="Project Code" />
-
-        <TextView
-            android:id="@+id/text_project_code"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="10dp"
-            android:textAlignment="viewEnd"
-            android:textColor="@color/blue" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/text_project_code_label"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:padding="10dp"
+        android:text="Project Code"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/text_project_code"
+        app:layout_constraintTop_toBottomOf="@+id/text_time_type_label" />
 
-        <TextView
-            android:id="@+id/text_activity_type_label"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="10dp"
-            android:text="Activity Type" />
-
-        <TextView
-
-            android:id="@+id/text_activity_type"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="10dp"
-            android:textAlignment="viewEnd"
-            android:textColor="@color/blue" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/text_project_code"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:padding="10dp"
+        android:textAlignment="viewEnd"
+        android:textColor="@color/blue"
+        app:layout_constraintStart_toEndOf="@+id/text_project_code_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/text_project_code_label" />
 
+    <TextView
+        android:id="@+id/text_activity_type_label"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="Activity Type"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/text_activity_type"
+        app:layout_constraintTop_toBottomOf="@+id/text_project_code_label" />
 
-        <TextView
-            android:id="@+id/text_hours_label"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="10dp"
-            android:text="Hours" />
+    <TextView
+        android:id="@+id/text_activity_type"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:textAlignment="viewEnd"
+        android:textColor="@color/blue"
+        app:layout_constraintStart_toEndOf="@+id/text_activity_type_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/text_activity_type_label" />
 
-        <TextView
-            android:id="@+id/text_hours"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="10dp"
-            android:textAlignment="viewEnd"
-            android:textColor="@color/blue" />
+    <TextView
+        android:id="@+id/text_hours_label"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="Hours"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/text_hours"
+        app:layout_constraintTop_toBottomOf="@+id/text_activity_type_label" />
 
-    </LinearLayout>
-</LinearLayout>
+    <TextView
+        android:id="@+id/text_hours"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:textAlignment="viewEnd"
+        android:textColor="@color/blue"
+        app:layout_constraintStart_toEndOf="@+id/text_hours_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/text_hours_label" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

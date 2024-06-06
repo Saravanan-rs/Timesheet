@@ -1,189 +1,202 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/weekly_calendar_card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="10dp">
+    android:layout_marginStart="15dp"
+    android:layout_marginTop="15dp"
+    android:layout_marginEnd="15dp"
+    android:layout_marginBottom="10dp"
+    android:padding="10dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="10dp">
 
-    <!-- Weekdays Row -->
-    <TextView
-        android:id="@+id/textS"
-        android:layout_width="0dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="S"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toStartOf="@id/textM"
-        app:layout_constraintHorizontal_weight="1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:padding="10dp">
 
-    <TextView
-        android:id="@+id/textM"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="M"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toStartOf="@id/textT1"
-        app:layout_constraintHorizontal_weight="1"
-        app:layout_constraintStart_toEndOf="@id/textS"
-        app:layout_constraintTop_toTopOf="parent" />
+        <!-- Weekdays Row -->
+        <TextView
+            android:id="@+id/textS"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="S"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toStartOf="@id/textM"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textT1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="T"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toStartOf="@id/textW"
-        app:layout_constraintHorizontal_weight="1"
-        app:layout_constraintStart_toEndOf="@id/textM"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/textM"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="M"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toStartOf="@id/textT1"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@id/textS"
+            app:layout_constraintTop_toTopOf="parent" />
 
-
-    <TextView
-        android:id="@+id/textW"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="W"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toStartOf="@id/textT2"
-        app:layout_constraintHorizontal_weight="1"
-        app:layout_constraintStart_toEndOf="@id/textT1"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/textT1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="T"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toStartOf="@id/textW"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@id/textM"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-    <TextView
-        android:id="@+id/textT2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="T"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toStartOf="@id/textF"
-        app:layout_constraintHorizontal_weight="1"
-        app:layout_constraintStart_toEndOf="@id/textW"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/textW"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="W"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toStartOf="@id/textT2"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@id/textT1"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-    <TextView
-        android:id="@+id/textF"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="F"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toStartOf="@id/textS2"
-        app:layout_constraintHorizontal_weight="1"
-        app:layout_constraintStart_toEndOf="@id/textT2"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/textT2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="T"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toStartOf="@id/textF"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@id/textW"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-    <TextView
-        android:id="@+id/textS2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="S"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_weight="1"
-        app:layout_constraintStart_toEndOf="@id/textF"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/textF"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="F"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toStartOf="@id/textS2"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@id/textT2"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-    <!-- Dates Row -->
-    <Button
-        android:id="@+id/date1Button"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:backgroundTint="@android:color/transparent"
-        android:padding="4dp"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toStartOf="@id/date2Button"
-        app:layout_constraintHorizontal_weight="1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textS" />
-
-    <Button
-        android:id="@+id/date2Button"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:backgroundTint="@android:color/transparent"
-        android:padding="4dp"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toStartOf="@id/date3Button"
-        app:layout_constraintHorizontal_weight="1"
-        app:layout_constraintStart_toEndOf="@id/date1Button"
-        app:layout_constraintTop_toBottomOf="@id/textM" />
+        <TextView
+            android:id="@+id/textS2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="S"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@id/textF"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-    <Button
-        android:id="@+id/date3Button"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:backgroundTint="@android:color/transparent"
-        android:padding="4dp"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toStartOf="@id/date4Button"
-        app:layout_constraintHorizontal_weight="1"
-        app:layout_constraintStart_toEndOf="@id/date2Button"
-        app:layout_constraintTop_toBottomOf="@id/textT1" />
+        <!-- Dates Row -->
+        <Button
+            android:id="@+id/date1Button"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:backgroundTint="@android:color/transparent"
+            android:padding="4dp"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toStartOf="@id/date2Button"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textS" />
+
+        <Button
+            android:id="@+id/date2Button"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:backgroundTint="@android:color/transparent"
+            android:padding="4dp"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toStartOf="@id/date3Button"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@id/date1Button"
+            app:layout_constraintTop_toBottomOf="@id/textM" />
 
 
-    <Button
-        android:id="@+id/date4Button"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:backgroundTint="@android:color/transparent"
-        android:padding="4dp"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toStartOf="@id/date5Button"
-        app:layout_constraintHorizontal_weight="1"
-        app:layout_constraintStart_toEndOf="@id/date3Button"
-        app:layout_constraintTop_toBottomOf="@id/textW" />
+        <Button
+            android:id="@+id/date3Button"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:backgroundTint="@android:color/transparent"
+            android:padding="4dp"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toStartOf="@id/date4Button"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@id/date2Button"
+            app:layout_constraintTop_toBottomOf="@id/textT1" />
 
 
-    <Button
-        android:id="@+id/date5Button"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:backgroundTint="@android:color/transparent"
-        android:padding="4dp"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toStartOf="@id/date6Button"
-        app:layout_constraintHorizontal_weight="1"
-        app:layout_constraintStart_toEndOf="@id/date4Button"
-        app:layout_constraintTop_toBottomOf="@id/textT2" />
+        <Button
+            android:id="@+id/date4Button"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:backgroundTint="@android:color/transparent"
+            android:padding="4dp"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toStartOf="@id/date5Button"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@id/date3Button"
+            app:layout_constraintTop_toBottomOf="@id/textW" />
 
 
-    <Button
-        android:id="@+id/date6Button"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:backgroundTint="@android:color/transparent"
-        android:padding="4dp"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toStartOf="@id/date7Button"
-        app:layout_constraintHorizontal_weight="1"
-        app:layout_constraintStart_toEndOf="@id/date5Button"
-        app:layout_constraintTop_toBottomOf="@id/textF" />
+        <Button
+            android:id="@+id/date5Button"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:backgroundTint="@android:color/transparent"
+            android:padding="4dp"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toStartOf="@id/date6Button"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@id/date4Button"
+            app:layout_constraintTop_toBottomOf="@id/textT2" />
 
 
-    <Button
-        android:id="@+id/date7Button"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:backgroundTint="@android:color/transparent"
-        android:padding="4dp"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_weight="1"
-        app:layout_constraintStart_toEndOf="@id/date6Button"
-        app:layout_constraintTop_toBottomOf="@id/textS2" />
+        <Button
+            android:id="@+id/date6Button"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:backgroundTint="@android:color/transparent"
+            android:padding="4dp"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toStartOf="@id/date7Button"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@id/date5Button"
+            app:layout_constraintTop_toBottomOf="@id/textF" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/date7Button"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:backgroundTint="@android:color/transparent"
+            android:padding="4dp"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@id/date6Button"
+            app:layout_constraintTop_toBottomOf="@id/textS2" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

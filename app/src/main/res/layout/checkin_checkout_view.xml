@@ -1,94 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="5dp">
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/loginCardTitleText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="5dp">
+        android:padding="5dp"
+        android:text="LOGIN"
+        android:layout_marginStart="5dp"
+        android:textColor="@color/material_dynamic_neutral70"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Check-In"
-            android:textSize="15dp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="09:30"
-            android:textAlignment="textEnd"
-            android:textSize="15dp" />
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:layout_margin="5dp"
-        android:background="@color/black" />
-
-    <LinearLayout
+    <androidx.cardview.widget.CardView
+        android:id="@+id/checkin_checkout_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="5dp">
+        android:layout_margin="10dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginCardTitleText"
+        tools:layout_editor_absoluteX="10dp">
 
-        <TextView
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Check-Out"
-            android:textSize="15dp" />
+            android:layout_height="match_parent"
+            android:padding="5dp">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="19:02"
-            android:textAlignment="textEnd"
-            android:textSize="15dp" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/checkInLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Check-In"
+                android:textSize="15dp"
+                app:layout_constraintEnd_toStartOf="@+id/checkInTime"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:layout_margin="5dp"
-        android:background="@color/black" />
+            <TextView
+                android:id="@+id/checkInTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="09:30"
+                android:textAlignment="textEnd"
+                android:textSize="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/checkInLabel"
+                app:layout_constraintTop_toTopOf="@+id/checkInLabel" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="5dp">
+            <View
+                android:id="@+id/checkInDivider"
+                android:layout_width="0dp"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/checkInTime" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Location"
-            android:textSize="15dp" />
+            <TextView
+                android:id="@+id/checkOutLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Check-Out"
+                android:textSize="15dp"
+                app:layout_constraintEnd_toStartOf="@+id/checkOutTime"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/checkInDivider" />
 
-        <TextView
-            android:id="@+id/locationText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Bangalore"
-            android:textAlignment="textEnd"
-            android:textSize="15dp" />
+            <TextView
+                android:id="@+id/checkOutTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="19:02"
+                android:textAlignment="textEnd"
+                android:textSize="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/checkOutLabel"
+                app:layout_constraintTop_toTopOf="@+id/checkOutLabel" />
 
-        <ImageButton
-            android:id="@+id/locationMoreButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:src="@drawable/baseline_navigate_next_24" />
-    </LinearLayout>
+            <View
+                android:id="@+id/checkOutDivider"
+                android:layout_width="0dp"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/checkOutTime" />
 
-</LinearLayout>
+            <TextView
+                android:id="@+id/locationLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Location"
+                android:textSize="15dp"
+                app:layout_constraintEnd_toStartOf="@+id/locationText"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/checkOutDivider" />
+
+            <TextView
+                android:id="@+id/locationText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Bangalore"
+                android:textAlignment="textEnd"
+                android:textSize="15dp"
+                app:layout_constraintEnd_toStartOf="@+id/locationMoreButton"
+                app:layout_constraintStart_toEndOf="@+id/locationLabel"
+                app:layout_constraintTop_toTopOf="@+id/locationLabel" />
+
+            <ImageButton
+                android:id="@+id/locationMoreButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:src="@drawable/baseline_navigate_next_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/locationText" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

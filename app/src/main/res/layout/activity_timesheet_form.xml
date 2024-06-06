@@ -113,6 +113,20 @@
         app:layout_constraintTop_toBottomOf="@+id/activityTypeSpinner" />
 
     <Button
+        android:id="@+id/addTaskFormBtn"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:backgroundTint="@color/blue"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="Add"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/cancelTaskFormBtn"
+        app:layout_constraintTop_toBottomOf="@+id/hours" />
+
+    <Button
         android:id="@+id/cancelTaskFormBtn"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
@@ -123,22 +137,8 @@
         android:text="Cancel"
         app:layout_constraintEnd_toStartOf="@+id/addTaskFormBtn"
         app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
-      />
-
-    <Button
-        android:id="@+id/addTaskFormBtn"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:backgroundTint="@color/blue"
-        android:gravity="center"
-        android:padding="10dp"
-        android:text="Add"
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/cancelTaskFormBtn"
         app:layout_constraintTop_toBottomOf="@+id/hours" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
