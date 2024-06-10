@@ -1,8 +1,9 @@
+@file:Suppress("NAME_SHADOWING")
+
 package com.example.timesheet
 
 import android.content.Context
 import android.os.Build
-import android.widget.Button
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
@@ -13,10 +14,15 @@ import java.time.temporal.ChronoUnit
 object Utils {
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun updateDateRangeText(context: Context, textView: TextView, startDate: LocalDate, buttons: List<Button>) {
+    fun updateDateRangeText(
+        context: Context,
+        textView: TextView,
+        startDate: LocalDate,
+        textViews: List<TextView>,
+    ) {
         val formatterDate = DateTimeFormatter.ofPattern("d")
-        buttons.forEachIndexed { index, button ->
-            button.text = startDate.plusDays(index.toLong()).format(formatterDate)
+        textViews.forEachIndexed { index, textView ->
+            textView.text = startDate.plusDays(index.toLong()).format(formatterDate)
         }
 
         val endDate = startDate.plusDays(6)
@@ -28,37 +34,58 @@ object Utils {
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun initializeDateButtons(context: Context, currentWeekStartDate: LocalDate, buttons: List<Button>, onSelectDate: (LocalDate) -> Unit) {
+    fun initializeDateTextViews(
+        context: Context,
+        currentWeekStartDate: LocalDate,
+        textViews: List<TextView>,
+        onSelectDate: (LocalDate) -> Unit,
+    ) {
         val formatterDate = DateTimeFormatter.ofPattern("d")
-        buttons.forEachIndexed { index, button ->
-            button.text = currentWeekStartDate.plusDays(index.toLong()).format(formatterDate)
-            button.setOnClickListener {
-                 selectDate(context, button, buttons, currentWeekStartDate.plusDays(index.toLong()), onSelectDate)
+        textViews.forEachIndexed { index, textView ->
+            textView.text = currentWeekStartDate.plusDays(index.toLong()).format(formatterDate)
+            textView.setOnClickListener {
+                selectDate(
+                    context,
+                    textView,
+                    textViews,
+                    currentWeekStartDate.plusDays(index.toLong()),
+                    onSelectDate
+                )
             }
         }
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun highlightTodayButton(context: Context, buttons: List<Button>, currentWeekStartDate: LocalDate):LocalDate {
+    fun highlightTodayTextView(
+        context: Context,
+        textViews: List<TextView>,
+        currentWeekStartDate: LocalDate,
+    ): LocalDate {
         val today = LocalDate.now()
         val todayIndex = currentWeekStartDate.until(today, ChronoUnit.DAYS).toInt()
-        if (todayIndex in buttons.indices) {
-            val todayButton = buttons[todayIndex]
-            todayButton.backgroundTintList = ContextCompat.getColorStateList(context, R.color.blue)
-            todayButton.setTextColor(ContextCompat.getColor(context, R.color.white))
+        if (todayIndex in textViews.indices) {
+            val todayTextView = textViews[todayIndex]
+            todayTextView.setBackgroundResource(R.drawable.circle_highlight)
+            todayTextView.setTextColor(ContextCompat.getColor(context, R.color.white))
         }
         return today
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun selectDate(context: Context, selectedButton: Button, buttons: List<Button>, selectedDate: LocalDate, onSelectDate: (LocalDate) -> Unit) :LocalDate{
-        buttons.forEach { button ->
-            if (button == selectedButton) {
-                button.backgroundTintList = ContextCompat.getColorStateList(context, R.color.blue)
-                button.setTextColor(ContextCompat.getColor(context, R.color.white))
+    fun selectDate(
+        context: Context,
+        selectedTextView: TextView,
+        textViews: List<TextView>,
+        selectedDate: LocalDate,
+        onSelectDate: (LocalDate) -> Unit,
+    ): LocalDate {
+        textViews.forEach { textView ->
+            if (textView == selectedTextView) {
+                textView.setBackgroundResource(R.drawable.circle_highlight)
+                textView.setTextColor(ContextCompat.getColor(context, R.color.white))
             } else {
-                button.backgroundTintList = ContextCompat.getColorStateList(context, android.R.color.transparent)
-                button.setTextColor(ContextCompat.getColor(context, R.color.black))
+                textView.setBackgroundResource(android.R.color.transparent)
+                textView.setTextColor(ContextCompat.getColor(context, R.color.black))
             }
         }
         onSelectDate(selectedDate)
@@ -67,7 +94,8 @@ object Utils {
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun updateDayDateMonthText(context: Context, date: LocalDate, textView: TextView) {
-        val formatter = DateTimeFormatter.ofPattern("EEEE, d'${getDayOfMonthSuffix(date.dayOfMonth)}' MMMM")
+        val formatter =
+            DateTimeFormatter.ofPattern("EEEE, d'${getDayOfMonthSuffix(date.dayOfMonth)}' MMMM")
         val formattedDate = date.format(formatter)
         textView.text = formattedDate
     }

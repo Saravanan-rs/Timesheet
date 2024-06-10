@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -10,7 +9,7 @@
         android:layout_height="wrap_content">
 
         <include
-            android:id="@+id/include2"
+            android:id="@+id/appBar"
             layout="@layout/app_bar_view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -24,19 +23,16 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/include2" />
+            app:layout_constraintTop_toBottomOf="@id/appBar" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/hours_card_recyclerview"
+        <include
+            android:id="@+id/hours_card_summary_recyclerview"
+            layout="@layout/hours_card_summary_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:itemCount="1"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layoutWeekRange"
-            tools:listitem="@layout/hours_card_item" />
-
+            app:layout_constraintTop_toBottomOf="@+id/layoutWeekRange" />
 
         <include
             android:id="@+id/weekly_calendar_card_view"
@@ -46,7 +42,7 @@
             android:layout_margin="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/hours_card_recyclerview" />
+            app:layout_constraintTop_toBottomOf="@+id/hours_card_summary_recyclerview" />
 
 
         <include
@@ -55,13 +51,18 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/weekly_calendar_card_view" />
+
         <include
             android:id="@+id/time_entry_card"
             layout="@layout/time_entry_card_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/checkin_checkout_card" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
