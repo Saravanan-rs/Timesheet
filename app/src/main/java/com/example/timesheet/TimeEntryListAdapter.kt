@@ -1,11 +1,14 @@
 package com.example.timesheet
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomsheet.BottomSheetDialog
 
 class TimeEntryListAdapter(
     private val context: Context,
@@ -17,16 +20,17 @@ class TimeEntryListAdapter(
         return ViewHolder(view)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items[position]
 
-        holder.title.text = item.title
-        holder.subtitle.text = item.subtitle
-        holder.count.text = item.count.toString()
-        holder.imageButton.setImageResource(item.imageResId)
+        holder.title.text = item.timeType
+        holder.subtitle.text = item.projectCode+" | "+item.activityType
+        holder.count.text = item.hours.toString()
+        holder.imageButton.setImageResource(R.drawable.baseline_navigate_next_24)
 
         holder.imageButton.setOnClickListener {
-            // Handle button click
+
         }
     }
 

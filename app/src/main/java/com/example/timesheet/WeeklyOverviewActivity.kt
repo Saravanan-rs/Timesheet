@@ -4,6 +4,8 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.annotation.RequiresApi
@@ -11,12 +13,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.temporal.TemporalAdjusters
 
 @Suppress("DEPRECATION")
-class WeeklyOverviewActivity : AppCompatActivity(), LocationBottomSheetDialog.OnLocationSelectedListener {
+class WeeklyOverviewActivity : AppCompatActivity(),
+    LocationBottomSheetDialog.OnLocationSelectedListener {
 
     private lateinit var date1TextView: TextView
     private lateinit var date2TextView: TextView
@@ -28,6 +32,7 @@ class WeeklyOverviewActivity : AppCompatActivity(), LocationBottomSheetDialog.On
 
     @RequiresApi(Build.VERSION_CODES.O)
     private lateinit var currentWeekStartDate: LocalDate
+
     @RequiresApi(Build.VERSION_CODES.O)
     private lateinit var selectedDate: LocalDate
 
@@ -36,7 +41,9 @@ class WeeklyOverviewActivity : AppCompatActivity(), LocationBottomSheetDialog.On
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_timesheet)
 
-        currentWeekStartDate = intent.getSerializableExtra("currentWeekStartDate") as LocalDate? ?: LocalDate.now().with(TemporalAdjusters.previousOrSame(DayOfWeek.SUNDAY))
+        currentWeekStartDate =
+            intent.getSerializableExtra("currentWeekStartDate") as LocalDate? ?: LocalDate.now()
+                .with(TemporalAdjusters.previousOrSame(DayOfWeek.SUNDAY))
         selectedDate = intent.getSerializableExtra("selectedDate") as LocalDate
         initializeDateTextViews()
         setupPreviousNextButtonListeners()
@@ -60,7 +67,8 @@ class WeeklyOverviewActivity : AppCompatActivity(), LocationBottomSheetDialog.On
 
         // Hours Card Grid Recycler View
         val hoursCardRecyclerView: RecyclerView = findViewById(R.id.hours_card_summary_recyclerview)
-        hoursCardRecyclerView.layoutManager = GridLayoutManager(this, 3) // Change the number of columns as needed
+        hoursCardRecyclerView.layoutManager =
+            GridLayoutManager(this, 3) // Change the number of columns as needed
         val hoursCardItems = listOf(
             CardItem("54", "Regular Hours", Color.parseColor("#E1BEE7"), Color.BLUE),
             CardItem("20", "Total Hours", Color.parseColor("#C5E1A5"), Color.parseColor("#195E2A")),
@@ -72,14 +80,28 @@ class WeeklyOverviewActivity : AppCompatActivity(), LocationBottomSheetDialog.On
         // Time Entry Recycler View
         val timeEntryRecyclerView: RecyclerView = findViewById(R.id.time_entry_recyclerview)
         timeEntryRecyclerView.layoutManager = LinearLayoutManager(this)
-        val items = listOf(
-            TimeEntryListItem("Project Work", "INC0000123|Design", 5, R.drawable.baseline_navigate_next_24),
-            TimeEntryListItem("Project Planning", "INC0000124|Planning", 2, R.drawable.baseline_navigate_next_24),
-            TimeEntryListItem("Project Planning", "INC0000124|Planning", 2, R.drawable.baseline_navigate_next_24),
+        val timeEntryItems = listOf(
+            TimeEntryListItem("Project Work", "INC0000123", "Design", 5.0),
+            TimeEntryListItem("Project Planning", "INC0000124", "Planning", 2.0),
+            TimeEntryListItem("Project Planning", "INC0000124", "Planning", 2.0),
             // Add more items as needed
         )
-        val adapter = TimeEntryListAdapter(this, items)
+        val adapter = TimeEntryListAdapter(this, timeEntryItems)
         timeEntryRecyclerView.adapter = adapter
+
+        findViewById<ImageButton>(R.id.add_timeEntry_button).setOnClickListener {
+            val bottomSheet = TimeEntryBottomSheetDialogFragment()
+
+            bottomSheet.show(supportFragmentManager, "TimeEntryBottomSheetDialogFragment")
+        }
+    }
+
+    private fun showBottomSheet() {
+        val bottomSheetDialog = BottomSheetDialog(this)
+        val view = LayoutInflater.from(this).inflate(R.layout.time_entry_bottom_sheet, null)
+        bottomSheetDialog.setContentView(view)
+        bottomSheetDialog.show()
+
     }
 
     // Fetch location from bottom sheet and set to TextView
@@ -100,13 +122,15 @@ class WeeklyOverviewActivity : AppCompatActivity(), LocationBottomSheetDialog.On
         previousWeekButton.setOnClickListener {
             currentWeekStartDate = currentWeekStartDate.minusWeeks(1)
             Utils.updateDateRangeText(this, dateRangeTextView, currentWeekStartDate, getTextViews())
-            selectedDate = Utils.selectDate(this, date1TextView, getTextViews(), currentWeekStartDate) { }
+            selectedDate =
+                Utils.selectDate(this, date1TextView, getTextViews(), currentWeekStartDate) { }
         }
 
         nextWeekButton.setOnClickListener {
             currentWeekStartDate = currentWeekStartDate.plusWeeks(1)
             Utils.updateDateRangeText(this, dateRangeTextView, currentWeekStartDate, getTextViews())
-            selectedDate = Utils.selectDate(this, date1TextView, getTextViews(), currentWeekStartDate) { }
+            selectedDate =
+                Utils.selectDate(this, date1TextView, getTextViews(), currentWeekStartDate) { }
         }
     }
 
@@ -129,6 +153,14 @@ class WeeklyOverviewActivity : AppCompatActivity(), LocationBottomSheetDialog.On
         date5TextView = findViewById(R.id.date5Button)
         date6TextView = findViewById(R.id.date6Button)
         date7TextView = findViewById(R.id.date7Button)
-        return listOf(date1TextView, date2TextView, date3TextView, date4TextView, date5TextView, date6TextView, date7TextView)
+        return listOf(
+            date1TextView,
+            date2TextView,
+            date3TextView,
+            date4TextView,
+            date5TextView,
+            date6TextView,
+            date7TextView
+        )
     }
 }

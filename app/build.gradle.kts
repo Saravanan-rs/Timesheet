@@ -7,6 +7,10 @@ android {
     namespace = "com.example.timesheet"
     compileSdk = 34
 
+    buildFeatures {
+        dataBinding= true
+        viewBinding=true
+    }
     defaultConfig {
         applicationId = "com.example.timesheet"
         minSdk = 24
@@ -45,6 +49,7 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-
-
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
+    implementation(libs.material)
 }
